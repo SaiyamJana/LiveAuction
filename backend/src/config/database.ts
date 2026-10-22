@@ -1,14 +1,25 @@
+import mongoose from "mongoose";
 
-import mongoose from 'mongoose';
-
-export async function connectDatabase(): Promise<void> {
-  const mongoUri = process.env.MONGODB_URI;
-
-  if (!mongoUri) {
-    throw new Error('MONGODB_URI is missing from the .env file');
+export async function connectDB(): Promise<void> {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error("MONGODB_URI is not set in the environment");
   }
 
-  await mongoose.connect(mongoUri);
+  mongoose.connection.on("error", (err) => {
+    console.error("MongoDB runtime error:", err.name);
+  });
+  mongoose.connection.on("disconnected", () => {
+    console.warn("MongoDB disconnected");
+  });
 
-  console.log('MongoDB Atlas connected successfully');
+  try {
+    await mongoose.connect(uri);
+    console.log("MongoDB connected");
+  } catch (err) {
+    // Log only the error name/message, never the connection string
+    const e = err as Error;
+    console.error(`MongoDB connection failed: ${e.name}`);
+    process.exit(1);
+  }
 }
