@@ -9,6 +9,7 @@ export interface IUser {
   secureCodeHash: string;
   tokenVersion: number;
   failedAttempts: number;
+  lockedUntil: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -22,6 +23,7 @@ const userSchema = new Schema<IUser>(
     secureCodeHash: { type: String, required: true, select: false },
     tokenVersion: { type: Number, default: 0, min: 0 },
     failedAttempts: { type: Number, default: 0, min: 0 },
+    lockedUntil: { type: Date, default: null }, // null = not locked
   },
   {
     timestamps: true,

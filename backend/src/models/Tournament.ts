@@ -47,13 +47,13 @@ const schema = new Schema<ITournament>(
       tournamentStart: Date,
     },
     contact: {
-      name: { type: String, required: true, trim: true },
-      phone: { type: String, required: true, trim: true },
+      name: { type: String, trim: true },
+      phone: { type: String, trim: true },
     },
     teamConfig: {
-      totalTeams: { type: Number, required: true, min: 2 },
-      maxPlayers: { type: Number, required: true, min: 1 },
-      minPlayers: { type: Number, required: true, min: 1 },
+      totalTeams: { type: Number, min: 2 },
+      maxPlayers: { type: Number, min: 1 },
+      minPlayers: { type: Number, min: 1 },
     },
     pointsConfig: {
       win: { type: Number, default: 2 },

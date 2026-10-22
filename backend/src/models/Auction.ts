@@ -12,6 +12,8 @@ export interface IAuction {
   timer: number; // seconds between organizer's final call and "unsold" announcement
   bidIncrement: { currentPrice: number; increment: number }[];
   playerOrder: AutoManual;
+  playerSequence: Types.ObjectId[]; // ordered list of player IDs for the auction
+  currentBidsEndAt: Date | null; // timestamp when the current bid ends
   currentPlayerId: Types.ObjectId | null;
   currentOrder: number;
   currentAmount: number;
@@ -41,6 +43,8 @@ const schema = new Schema<IAuction>(
       },
     ],
     playerOrder: { type: String, enum: AUTO_MANUAL, default: "auto" },
+    playerSequence: [{ type: Schema.Types.ObjectId, ref: "Player" , default: [] }],
+    currentBidsEndAt: { type: Date, default: null },
     currentPlayerId: { type: Schema.Types.ObjectId, ref: "Player", default: null },
     currentOrder: { type: Number, default: 0, min: 0 },
     currentAmount: { type: Number, default: 0, min: 0 },
