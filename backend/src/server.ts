@@ -1,11 +1,15 @@
 import 'dotenv/config';
 import app from './app.js';
 import { connectDB } from './config/database.js';
+import { assertAuthConfig } from './utils/jwt.js';
 
 const PORT = Number(process.env.PORT) || 5000;
 
 async function startServer(): Promise<void> {
   try {
+    // Fail fast if JWT_SECRET / JWT_EXPIRES_IN are missing.
+    assertAuthConfig();
+
     // Start listening only after the database is connected.
     await connectDB();
 
