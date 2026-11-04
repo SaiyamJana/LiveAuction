@@ -23,5 +23,7 @@ const schema = new Schema<ITournamentRequest>({
 
 schema.index({ user_id: 1, status: 1 }); // for getting user requests by status
 schema.index({ status: 1, sendAt: -1 }); // for getting latest requests by status
+// At most ONE pending request per user. Makes the "no second pending request" rule race-safe.
+schema.index({ user_id: 1 }, { unique: true, partialFilterExpression: { status: "pending" } });
 
 export const TournamentRequest = model<ITournamentRequest>("TournamentRequest", schema);

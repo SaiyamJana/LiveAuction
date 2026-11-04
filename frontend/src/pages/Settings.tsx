@@ -47,12 +47,12 @@ function ChangePasswordForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="mt-4 space-y-4">
       {formError && (
-        <p role="alert" className="rounded border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+        <p role="alert" className="rounded-lg border border-danger/40 bg-danger-soft px-3 py-2 text-sm text-danger">
           {formError}
         </p>
       )}
       {success && (
-        <p role="status" className="rounded border border-green-500/50 bg-green-500/10 px-3 py-2 text-sm text-green-300">
+        <p role="status" className="rounded-lg border border-success/40 bg-success-soft px-3 py-2 text-sm text-success">
           {success}
         </p>
       )}
@@ -66,7 +66,7 @@ function ChangePasswordForm() {
         value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
         error={fieldErrors.confirmPassword} />
       <button type="submit" disabled={submitting}
-        className="rounded bg-slate-100 px-4 py-2 font-medium text-slate-900 hover:bg-white disabled:opacity-60">
+        className="rounded-lg bg-primary px-4 py-2 font-medium text-primary-fg hover:bg-primary-hover disabled:opacity-60">
         {submitting ? 'Saving...' : 'Change password'}
       </button>
     </form>
@@ -111,17 +111,17 @@ function DeleteAccountModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay px-4"
       role="dialog" aria-modal="true" aria-labelledby="delete-title">
-      <div className="w-full max-w-md rounded-lg border border-slate-700 bg-slate-900 p-6">
-        <h3 id="delete-title" className="text-lg font-semibold text-red-400">Delete your account?</h3>
-        <p className="mt-2 text-sm text-slate-300">
+      <div className="w-full max-w-md rounded-lg border border-line-strong bg-surface p-6">
+        <h3 id="delete-title" className="text-lg font-semibold text-danger">Delete your account?</h3>
+        <p className="mt-2 text-sm text-muted">
           This permanently deletes your account and cannot be undone. You will be logged out immediately.
         </p>
 
         <form onSubmit={handleSubmit} noValidate className="mt-4 space-y-4">
           {formError && (
-            <div role="alert" className="rounded border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+            <div role="alert" className="rounded-lg border border-danger/40 bg-danger-soft px-3 py-2 text-sm text-danger">
               <p>{formError}</p>
               {blockers.length > 0 && (
                 <ul className="mt-2 list-disc pl-5">
@@ -141,11 +141,11 @@ function DeleteAccountModal({ onClose }: { onClose: () => void }) {
 
           <div className="flex justify-end gap-3">
             <button type="button" onClick={onClose} disabled={submitting}
-              className="rounded border border-slate-600 px-4 py-2 text-sm hover:bg-slate-800 disabled:opacity-60">
+              className="rounded-lg border border-line-strong px-4 py-2 text-sm hover:bg-surface-2 disabled:opacity-60">
               Cancel
             </button>
             <button type="submit" disabled={!confirmed || secureCode.length === 0 || submitting}
-              className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500 disabled:opacity-50">
+              className="rounded-lg bg-danger px-4 py-2 text-sm font-medium text-danger-fg hover:bg-danger-hover disabled:opacity-50">
               {submitting ? 'Deleting...' : 'Delete my account'}
             </button>
           </div>
@@ -164,7 +164,7 @@ function Settings() {
     <section className="mx-auto max-w-xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold">Account settings</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-1 text-sm text-muted">
           {user?.username} &middot; {user?.email}
         </p>
       </div>
@@ -174,18 +174,18 @@ function Settings() {
         <ChangePasswordForm />
       </div>
 
-      <div className="rounded-lg border border-red-500/40 p-5">
-        <h2 className="text-lg font-semibold text-red-400">Delete account</h2>
+      <div className="rounded-lg border border-danger/40 p-5">
+        <h2 className="text-lg font-semibold text-danger">Delete account</h2>
         {isOwner ? (
-          <p className="mt-2 text-sm text-slate-400">The owner account cannot be deleted.</p>
+          <p className="mt-2 text-sm text-muted">The owner account cannot be deleted.</p>
         ) : (
           <>
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-muted">
               Permanently delete your account. You need your secure code. Deletion is blocked while you
               organize, captain or play in an active tournament.
             </p>
             <button type="button" onClick={() => setShowDelete(true)}
-              className="mt-4 rounded border border-red-500 px-4 py-2 text-sm text-red-400 hover:bg-red-500/10">
+              className="mt-4 rounded-lg border border-danger px-4 py-2 text-sm text-danger hover:bg-danger-soft">
               Delete my account
             </button>
           </>

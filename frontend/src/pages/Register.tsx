@@ -53,16 +53,16 @@ function Register() {
   return (
     <section className="mx-auto max-w-md">
       <h1 className="text-2xl font-bold">Create an account</h1>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className="mt-2 text-sm text-muted">
         Already registered?{' '}
-        <Link to="/login" className="text-white underline">
+        <Link to="/login" className="text-primary underline">
           Log in
         </Link>
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
         {formError && (
-          <p role="alert" className="rounded border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+          <p role="alert" className="rounded-lg border border-danger/40 bg-danger-soft px-3 py-2 text-sm text-danger">
             {formError}
           </p>
         )}
@@ -83,7 +83,7 @@ function Register() {
           error={fieldErrors.secureCode} />
 
         <button type="submit" disabled={submitting}
-          className="w-full rounded bg-slate-100 px-4 py-2 font-medium text-slate-900 hover:bg-white disabled:opacity-60">
+          className="w-full rounded bg-primary px-4 py-2 font-medium text-primary-fg hover:bg-primary-hover disabled:opacity-60">
           {submitting ? 'Creating account...' : 'Register'}
         </button>
       </form>

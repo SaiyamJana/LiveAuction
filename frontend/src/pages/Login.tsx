@@ -56,20 +56,20 @@ function Login() {
   return (
     <section className="mx-auto max-w-md">
       <h1 className="text-2xl font-bold">Log in</h1>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className="mt-2 text-sm text-muted">
         New here?{' '}
-        <Link to="/register" className="text-white underline">
+        <Link to="/register" className="text-primary underline">
           Create an account
         </Link>
       </p>
 
       {state.registered && (
-        <p role="status" className="mt-4 rounded border border-green-500/50 bg-green-500/10 px-3 py-2 text-sm text-green-300">
+        <p role="status" className="mt-4 rounded-lg border border-success/40 bg-success-soft px-3 py-2 text-sm text-success">
           Account created. Please log in.
         </p>
       )}
       {state.passwordReset && (
-        <p role="status" className="mt-4 rounded border border-green-500/50 bg-green-500/10 px-3 py-2 text-sm text-green-300">
+        <p role="status" className="mt-4 rounded-lg border border-success/40 bg-success-soft px-3 py-2 text-sm text-success">
           Password updated. Please log in with your new password.
         </p>
       )}
@@ -77,10 +77,10 @@ function Login() {
       <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
         {formError && (
           <p role="alert"
-            className={`rounded border px-3 py-2 text-sm ${
+            className={`rounded-lg border px-3 py-2 text-sm ${
               locked
-                ? 'border-amber-500/50 bg-amber-500/10 text-amber-300'
-                : 'border-red-500/50 bg-red-500/10 text-red-300'
+                ? 'border-warning/40 bg-warning-soft text-warning'
+                : 'border-danger/40 bg-danger-soft text-danger'
             }`}>
             {formError}
             {locked && (
@@ -100,13 +100,13 @@ function Login() {
           value={password} onChange={(e) => setPassword(e.target.value)} error={fieldErrors.password} />
 
         <button type="submit" disabled={submitting}
-          className="w-full rounded bg-slate-100 px-4 py-2 font-medium text-slate-900 hover:bg-white disabled:opacity-60">
+          className="w-full rounded bg-primary px-4 py-2 font-medium text-primary-fg hover:bg-primary-hover disabled:opacity-60">
           {submitting ? 'Logging in...' : 'Log in'}
         </button>
       </form>
 
       <p className="mt-4 text-sm">
-        <Link to="/reset-password" className="text-slate-400 underline hover:text-white">
+        <Link to="/reset-password" className="text-muted underline hover:text-primary">
           Forgot your password?
         </Link>
       </p>

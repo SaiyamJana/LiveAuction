@@ -46,36 +46,36 @@ function Home() {
   return (
     <section>
       <h1 className="text-4xl font-bold">Tournament Auction</h1>
-      <p className="mt-4 max-w-2xl text-slate-300">
+      <p className="mt-4 max-w-2xl text-muted">
         Organize tournaments, register players, run live team auctions and follow fixtures,
         standings and statistics, all in one place.
       </p>
 
-      <div className="mt-8 inline-flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-900 px-4 py-3">
-        <span className="text-sm text-slate-400">Backend status:</span>
+      <div className="mt-8 inline-flex items-center gap-3 rounded-lg border border-line bg-surface px-4 py-3 shadow-sm">
+        <span className="text-sm text-muted">Backend status:</span>
 
         {health.kind === 'loading' && (
-          <span className="flex items-center gap-2 text-yellow-400">
-            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-yellow-400" />
+          <span className="flex items-center gap-2 text-warning">
+            <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-warning" />
             Checking...
           </span>
         )}
 
         {health.kind === 'online' && (
-          <span className="flex items-center gap-2 text-green-400">
-            <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+          <span className="flex items-center gap-2 text-success">
+            <span className="h-2.5 w-2.5 rounded-full bg-success" />
             Online
           </span>
         )}
 
         {health.kind === 'error' && (
-          <span className="flex items-center gap-3 text-red-400">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+          <span className="flex items-center gap-3 text-danger">
+            <span className="h-2.5 w-2.5 rounded-full bg-danger" />
             {health.message}
             <button
               type="button"
               onClick={retry}
-              className="rounded border border-red-400 px-2 py-0.5 text-xs hover:bg-red-400/10"
+              className="rounded-lg border border-danger px-2 py-0.5 text-xs hover:bg-danger-soft"
             >
               Retry
             </button>

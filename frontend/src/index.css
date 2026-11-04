@@ -1,1 +1,83 @@
 @import "tailwindcss";
+
+/*
+  Design tokens (single source of truth for colours).
+  Components only use the semantic utilities below (bg-surface, text-fg, border-line,
+  bg-primary, text-danger ...) and never raw colours, so a future dark theme is just
+  another block of values:
+
+    :root[data-theme="dark"] { --app-bg: ...; --surface: ...; }
+
+  and a toggle that sets document.documentElement.dataset.theme. No component changes.
+*/
+:root {
+  color-scheme: light;
+
+  --app-bg: #f3f6fb;
+  --surface: #ffffff;
+  --surface-2: #eef3fb;
+  --line: #dbe3ef;
+  --line-strong: #c3cfe0;
+
+  --fg: #0f1b33;
+  --muted: #4b5a75;
+  --subtle: #7385a3;
+
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --primary-fg: #ffffff;
+  --primary-soft: #e6eefe;
+
+  --secondary: #e8eef9;
+  --secondary-hover: #d9e3f6;
+  --secondary-fg: #1e3a8a;
+
+  --success: #15803d;
+  --success-soft: #e7f6ec;
+  --warning: #b45309;
+  --warning-soft: #fdf3dc;
+  --danger: #b91c1c;
+  --danger-hover: #991b1b;
+  --danger-soft: #fdeaea;
+  --danger-fg: #ffffff;
+
+  --overlay: rgb(15 27 51 / 0.5);
+}
+
+@theme inline {
+  --color-bg: var(--app-bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-fg: var(--secondary-fg);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-fg: var(--danger-fg);
+
+  --color-overlay: var(--overlay);
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

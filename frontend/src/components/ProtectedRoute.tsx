@@ -8,7 +8,7 @@ function ProtectedRoute() {
   const location = useLocation()
 
   if (loading) {
-    return <p className="text-center text-slate-400">Loading...</p>
+    return <p className="text-center text-muted">Loading...</p>
   }
 
   if (!user) {

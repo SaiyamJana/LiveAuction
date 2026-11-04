@@ -10,7 +10,7 @@ interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 function FormField({ label, name, error, hint, ...inputProps }: FormFieldProps) {
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-slate-200">
+      <label htmlFor={name} className="block text-sm font-medium text-fg">
         {label}
       </label>
       <input
@@ -18,14 +18,14 @@ function FormField({ label, name, error, hint, ...inputProps }: FormFieldProps) 
         name={name}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${name}-error` : undefined}
-        className={`mt-1 w-full rounded border bg-slate-900 px-3 py-2 text-slate-100 placeholder-slate-500 outline-none focus:border-slate-400 ${
-          error ? 'border-red-500' : 'border-slate-700'
+        className={`mt-1 w-full rounded-lg border bg-surface px-3 py-2 text-fg placeholder:text-subtle outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 ${
+          error ? 'border-danger' : 'border-line-strong'
         }`}
         {...inputProps}
       />
-      {hint && !error && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
+      {hint && !error && <p className="mt-1 text-xs text-subtle">{hint}</p>}
       {error && (
-        <p id={`${name}-error`} className="mt-1 text-xs text-red-400">
+        <p id={`${name}-error`} className="mt-1 text-xs text-danger">
           {error}
         </p>
       )}

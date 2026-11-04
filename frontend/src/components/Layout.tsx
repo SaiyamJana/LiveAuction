@@ -1,8 +1,9 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth-context.ts'
+import NotificationBell from './NotificationBell.tsx'
 
 function navClass({ isActive }: { isActive: boolean }) {
-  return isActive ? 'font-semibold text-white' : 'text-slate-400 hover:text-white'
+  return isActive ? 'font-semibold text-primary' : 'text-muted hover:text-fg'
 }
 
 function Layout() {
@@ -15,13 +16,13 @@ function Layout() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <header className="border-b border-slate-800">
-        <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <Link to="/" className="text-lg font-bold">
+    <div className="min-h-screen bg-bg text-fg">
+      <header className="border-b border-line bg-surface shadow-sm">
+        <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3">
+          <Link to="/" className="text-lg font-bold text-primary">
             Tournament Auction
           </Link>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
             <NavLink to="/" end className={navClass}>
               Home
             </NavLink>
@@ -30,20 +31,37 @@ function Layout() {
             {!loading && user && (
               <>
                 {user.role === 'owner' ? (
-                  <NavLink to="/owner" className={navClass}>
-                    Owner
-                  </NavLink>
+                  <>
+                    <NavLink to="/owner" end className={navClass}>
+                      Owner
+                    </NavLink>
+                    <NavLink to="/owner/requests" className={navClass}>
+                      Requests
+                    </NavLink>
+                  </>
                 ) : (
-                  <NavLink to="/dashboard" className={navClass}>
-                    Dashboard
-                  </NavLink>
+                  <>
+                    <NavLink to="/dashboard" className={navClass}>
+                      Dashboard
+                    </NavLink>
+                    <NavLink to="/request-tournament" className={navClass}>
+                      Request a Tournament
+                    </NavLink>
+                    <NavLink to="/my-requests" className={navClass}>
+                      My Requests
+                    </NavLink>
+                  </>
                 )}
                 <NavLink to="/settings" className={navClass}>
                   Settings
                 </NavLink>
-                <span className="text-slate-500">{user.username}</span>
-                <button type="button" onClick={handleLogout}
-                  className="rounded border border-slate-600 px-3 py-1 text-slate-200 hover:bg-slate-800">
+                <NotificationBell />
+                <span className="text-subtle">{user.username}</span>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="rounded-lg border border-line-strong px-3 py-1 text-fg hover:bg-surface-2"
+                >
                   Logout
                 </button>
               </>
@@ -63,7 +81,7 @@ function Layout() {
         </nav>
       </header>
 
-      <main className="mx-auto max-w-5xl px-4 py-10">
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:py-10">
         {/* The current page is drawn here */}
         <Outlet />
       </main>

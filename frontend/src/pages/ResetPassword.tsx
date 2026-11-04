@@ -46,16 +46,16 @@ function ResetPassword() {
   return (
     <section className="mx-auto max-w-md">
       <h1 className="text-2xl font-bold">Reset your password</h1>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className="mt-2 text-sm text-muted">
         Enter your email, the secure code you chose at registration, and a new password.{' '}
-        <Link to="/login" className="text-white underline">
+        <Link to="/login" className="text-primary underline">
           Back to login
         </Link>
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
         {formError && (
-          <p role="alert" className="rounded border border-red-500/50 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+          <p role="alert" className="rounded-lg border border-danger/40 bg-danger-soft px-3 py-2 text-sm text-danger">
             {formError}
           </p>
         )}
@@ -72,7 +72,7 @@ function ResetPassword() {
           onChange={(e) => setConfirmPassword(e.target.value)} error={fieldErrors.confirmPassword} />
 
         <button type="submit" disabled={submitting}
-          className="w-full rounded bg-slate-100 px-4 py-2 font-medium text-slate-900 hover:bg-white disabled:opacity-60">
+          className="w-full rounded bg-primary px-4 py-2 font-medium text-primary-fg hover:bg-primary-hover disabled:opacity-60">
           {submitting ? 'Resetting...' : 'Reset password'}
         </button>
       </form>

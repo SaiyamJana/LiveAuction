@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout.tsx'
 import OwnerRoute from './components/OwnerRoute.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
+import UserRoute from './components/UserRoute.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Forbidden from './pages/Forbidden.tsx'
@@ -9,7 +10,10 @@ import Home from './pages/Home.tsx'
 import Login from './pages/Login.tsx'
 import NotFound from './pages/NotFound.tsx'
 import OwnerDashboard from './pages/owner/OwnerDashboard.tsx'
+import OwnerRequests from './pages/owner/OwnerRequests.tsx'
+import MyRequests from './pages/MyRequests.tsx'
 import Register from './pages/Register.tsx'
+import RequestTournament from './pages/RequestTournament.tsx'
 import ResetPassword from './pages/ResetPassword.tsx'
 import Settings from './pages/Settings.tsx'
 
@@ -32,9 +36,16 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="settings" element={<Settings />} />
 
+            {/* Logged in AND role user (not owner) */}
+            <Route element={<UserRoute />}>
+              <Route path="request-tournament" element={<RequestTournament />} />
+              <Route path="my-requests" element={<MyRequests />} />
+            </Route>
+
             {/* Logged in AND role owner */}
             <Route element={<OwnerRoute />}>
               <Route path="owner" element={<OwnerDashboard />} />
+              <Route path="owner/requests" element={<OwnerRequests />} />
             </Route>
           </Route>
 

@@ -6,6 +6,8 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { ApiError } from './utils/ApiError.js';
 import authRoutes from './routes/auth.routes.js';
 import ownerRoutes from './routes/owner.routes.js';
+import notificationRoutes from './routes/notification.routes.js';
+import tournamentRequestRoutes from './routes/tournamentRequest.routes.js';
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/owner', ownerRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/tournament-requests', tournamentRequestRoutes);
 
 // Future routes (tournaments, ...) are registered ABOVE this line.
 
