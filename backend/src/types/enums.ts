@@ -50,6 +50,7 @@ export type AuctionStatus = (typeof AUCTION_STATUSES)[number];
 export const NOTIFICATION_TYPES = [
   "tournament_request",
   "tournament_response",
+  "tournament_cancelled",
   "player_registration",
   "registration_response",
   "auction_scheduled",

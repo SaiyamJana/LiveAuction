@@ -8,6 +8,8 @@ import authRoutes from './routes/auth.routes.js';
 import ownerRoutes from './routes/owner.routes.js';
 import notificationRoutes from './routes/notification.routes.js';
 import tournamentRequestRoutes from './routes/tournamentRequest.routes.js';
+import tournamentRoutes from './routes/tournament.routes.js';
+import publicRoutes from './routes/public.routes.js';
 
 const app = express();
 
@@ -40,6 +42,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/owner', ownerRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/tournament-requests', tournamentRequestRoutes);
+app.use('/api/tournaments', tournamentRoutes);
+app.use('/api/public', publicRoutes);
 
 // Future routes (tournaments, ...) are registered ABOVE this line.
 

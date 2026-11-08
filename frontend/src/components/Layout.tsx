@@ -18,13 +18,16 @@ function Layout() {
   return (
     <div className="min-h-screen bg-bg text-fg">
       <header className="border-b border-line bg-surface shadow-sm">
-        <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3">
+        <nav className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3">
           <Link to="/" className="text-lg font-bold text-primary">
             Tournament Auction
           </Link>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
             <NavLink to="/" end className={navClass}>
               Home
+            </NavLink>
+            <NavLink to="/tournaments" className={navClass}>
+              Tournaments
             </NavLink>
 
             {/* While the first /me check runs, show nothing to avoid a flash of the wrong links. */}
@@ -41,8 +44,11 @@ function Layout() {
                   </>
                 ) : (
                   <>
-                    <NavLink to="/dashboard" className={navClass}>
+                    <NavLink to="/dashboard" end className={navClass}>
                       Dashboard
+                    </NavLink>
+                    <NavLink to="/dashboard/organizer" className={navClass}>
+                      My Tournaments
                     </NavLink>
                     <NavLink to="/request-tournament" className={navClass}>
                       Request a Tournament
@@ -81,7 +87,7 @@ function Layout() {
         </nav>
       </header>
 
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:py-10">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:py-10">
         {/* The current page is drawn here */}
         <Outlet />
       </main>

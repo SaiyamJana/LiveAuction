@@ -55,7 +55,7 @@ function Modal({ title, onClose, busy = false, children }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-overlay px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-overlay px-4 backdrop-blur-[2px] animate-fade-in"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget && !busy) onClose()
       }}
@@ -66,7 +66,7 @@ function Modal({ title, onClose, busy = false, children }: ModalProps) {
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl border border-line bg-surface p-6 shadow-xl outline-none"
+        className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-line bg-surface p-6 shadow-xl outline-none animate-scale-in"
       >
         <h2 id={titleId} className="text-lg font-semibold text-fg">
           {title}

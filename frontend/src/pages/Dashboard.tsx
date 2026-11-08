@@ -13,7 +13,11 @@ function Dashboard() {
       <p className="mt-2 text-sm text-subtle">Signed in as {user?.email} ({user?.role}).</p>
 
       {user?.role === 'user' && (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <Link to="/dashboard/organizer" className="rounded-xl border border-line bg-surface p-5 shadow-sm hover:border-primary">
+            <p className="font-semibold">My tournaments</p>
+            <p className="mt-1 text-sm text-muted">Manage the tournaments you organize.</p>
+          </Link>
           <Link to="/request-tournament" className="rounded-xl border border-line bg-surface p-5 shadow-sm hover:border-primary">
             <p className="font-semibold">Request a tournament</p>
             <p className="mt-1 text-sm text-muted">Ask the owner for permission to organize one.</p>
