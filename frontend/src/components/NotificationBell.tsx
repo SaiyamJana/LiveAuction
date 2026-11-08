@@ -53,7 +53,7 @@ function NotificationBell() {
       {open && (
         <div
           id={panelId}
-          className="absolute right-0 z-40 mt-2 w-[22rem] max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-line bg-surface shadow-xl"
+          className="absolute right-0 z-40 mt-2 w-88 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-line bg-surface shadow-xl"
         >
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
             <h2 className="text-sm font-semibold text-fg">Notifications</h2>
@@ -99,7 +99,7 @@ function NotificationBell() {
                         aria-hidden="true"
                       />
                       <div className="min-w-0 flex-1">
-                        <p className={`break-words text-sm ${unread ? 'font-semibold text-fg' : 'text-muted'}`}>{n.body}</p>
+                        <p className={`wrap-break-word reak-words text-sm ${unread ? 'font-semibold text-fg' : 'text-muted'}`}>{n.body}</p>
                         <div className="mt-1 flex items-center justify-between gap-2">
                           <time dateTime={n.createdAt} title={formatDateTime(n.createdAt)} className="text-xs text-subtle">
                             {timeAgo(n.createdAt)}
