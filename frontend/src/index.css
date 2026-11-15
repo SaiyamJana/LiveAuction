@@ -97,6 +97,11 @@
   --animate-scale-in: scale-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-slide-up: slide-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-toast-in: toast-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-toast-out: toast-out 0.2s ease-in both;
+  --animate-drawer-in: drawer-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-drawer-out: drawer-out 0.2s cubic-bezier(0.4, 0, 1, 1) both;
+  --animate-fade-out: fade-out 0.2s ease-in both;
+  --animate-status-pop: status-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(10px); }
@@ -116,6 +121,26 @@
   }
   @keyframes toast-in {
     from { opacity: 0; transform: translateX(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes toast-out {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: translateX(16px); }
+  }
+  @keyframes drawer-in {
+    from { opacity: 0.6; transform: translateX(28px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes drawer-out {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: translateX(28px); }
+  }
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes status-pop {
+    from { opacity: 0; transform: scale(0.96) translateY(6px); }
     to { opacity: 1; transform: none; }
   }
 }

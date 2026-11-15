@@ -39,6 +39,8 @@ function toPublicListItem(t: TournamentDoc) {
 function toPublicDetail(t: TournamentDoc) {
   return {
     ...toPublicListItem(t),
+    // The id is not a secret. The registration page needs it for /api/tournaments/:id/registrations.
+    id: String(t._id),
     contactName: t.contact?.name ?? null, // the phone number is never public
     teamConfig: {
       totalTeams: t.teamConfig?.totalTeams ?? null,

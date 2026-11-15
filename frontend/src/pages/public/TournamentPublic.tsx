@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ApiRequestError } from '../../api/client.ts'
 import { publicTournamentsApi } from '../../api/publicTournaments.ts'
 import type { PublicTournamentDetail } from '../../api/publicTournaments.ts'
+import RegistrationPanel from '../../components/RegistrationPanel.tsx'
 import Alert from '../../components/ui/Alert.tsx'
 import Button from '../../components/ui/Button.tsx'
 import { ArrowLeftIcon, CalendarIcon, PhoneIcon, SearchIcon, TrophyIcon, UsersIcon } from '../../components/ui/icons.tsx'
@@ -124,9 +125,9 @@ function TournamentPublic() {
         <div aria-hidden="true" className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
         <div className="relative">
           <TournamentStatusBadge status={t.status} size="lg" />
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold break-words">{t.name}</h1>
+          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold wrap-break-word">{t.name}</h1>
           <p className="mt-2 text-sm text-subtle">{TOURNAMENT_STATUS[t.status].description}</p>
-          <p className="mt-6 max-w-3xl text-base whitespace-pre-wrap break-words text-muted">{t.description || 'The organizer has not added a description yet.'}</p>
+          <p className="mt-6 max-w-3xl text-base whitespace-pre-wrap wrap-break-word text-muted">{t.description || 'The organizer has not added a description yet.'}</p>
           {t.contactName && (
             <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-surface-2 px-4 py-1.5 text-sm">
               <PhoneIcon width={14} height={14} className="text-primary" />
@@ -134,6 +135,9 @@ function TournamentPublic() {
               <span className="font-semibold">{t.contactName}</span>
             </p>
           )}
+          <div className="mt-8">
+            <RegistrationPanel tournament={t} />
+          </div>
         </div>
       </header>
 
@@ -145,7 +149,7 @@ function TournamentPublic() {
                 const value = t.tournament_timeline[key]
                 return (
                   <li key={key} className="relative">
-                    <span className={`absolute top-1.5 -left-[31px] h-3 w-3 rounded-full ring-4 ring-surface ${value ? 'bg-primary' : 'bg-line-strong'}`} />
+                    <span className={`absolute top-1.5 -left-7.75 h-3 w-3 rounded-full ring-4 ring-surface ${value ? 'bg-primary' : 'bg-line-strong'}`} />
                     <p className="text-sm font-semibold">{label}</p>
                     <p className="text-sm text-muted">{value ? formatDateTime(value) : 'To be announced'}</p>
                   </li>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, NavLink, Outlet, useParams } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { ApiRequestError } from '../../api/client.ts'
 import { tournamentsApi } from '../../api/tournaments.ts'
 import type { TournamentDetail } from '../../api/tournaments.ts'
@@ -26,7 +26,8 @@ interface TabDef {
 // the tab a `path` here. Tabs without a path are shown as disabled "soon" placeholders.
 const TABS: TabDef[] = [
   { label: 'Overview', path: '', end: true },
-  { label: 'Players' },
+  { label: 'Registrations', path: 'registrations' },
+  { label: 'Players', path: 'players' },
   { label: 'Teams' },
   { label: 'Auction' },
   { label: 'Matches' },
@@ -38,6 +39,7 @@ type State = { kind: 'loading' } | { kind: 'ready'; tournament: TournamentDetail
 
 function TournamentHome() {
   const { id = '' } = useParams()
+  const location = useLocation()
   const [state, setState] = useState<State>({ kind: 'loading' })
   const [attempt, setAttempt] = useState(0)
 
@@ -98,7 +100,7 @@ function TournamentHome() {
       <header className="mt-5 animate-fade-up">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
-            <h1 className="text-3xl font-extrabold break-words">{tournament.name}</h1>
+            <h1 className="text-3xl font-extrabold wrap-break-words">{tournament.name}</h1>
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-subtle">
               <TournamentStatusBadge status={tournament.status} size="lg" />
               <span className="inline-flex items-center gap-1.5">
@@ -149,7 +151,7 @@ function TournamentHome() {
         </div>
       </div>
 
-      <div className="mt-8 animate-fade-up">
+      <div key={location.pathname} className="mt-8 animate-fade-up">
         <Outlet context={context} />
       </div>
     </section>

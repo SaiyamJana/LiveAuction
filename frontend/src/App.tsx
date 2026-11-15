@@ -17,6 +17,9 @@ import RequestTournament from './pages/RequestTournament.tsx'
 import ResetPassword from './pages/ResetPassword.tsx'
 import Settings from './pages/Settings.tsx'
 import { ToastProvider } from './components/ui/ToastProvider.tsx'
+import RegisterAsPlayer from './pages/RegisterAsPlayer.tsx'
+import Players from './pages/organizer/Players.tsx'
+import Registrations from './pages/organizer/Registrations.tsx'
 import MyTournaments from './pages/organizer/MyTournaments.tsx'
 import TournamentHome from './pages/organizer/TournamentHome.tsx'
 import TournamentOverview from './pages/organizer/TournamentOverview.tsx'
@@ -50,11 +53,14 @@ function App() {
             <Route element={<UserRoute />}>
               <Route path="request-tournament" element={<RequestTournament />} />
               <Route path="my-requests" element={<MyRequests />} />
+              <Route path="t/:slug/register" element={<RegisterAsPlayer />} />
 
               {/* Organizer area. The backend decides whether you organize the given tournament. */}
               <Route path="dashboard/organizer" element={<MyTournaments />} />
               <Route path="dashboard/organizer/tournaments/:id" element={<TournamentHome />}>
                 <Route index element={<TournamentOverview />} />
+                <Route path="registrations" element={<Registrations />} />
+                <Route path="players" element={<Players />} />
                 <Route path="settings" element={<TournamentSettings />} />
               </Route>
             </Route>

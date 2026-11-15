@@ -76,10 +76,31 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
   return data as T
 }
 
+// Fetches a file (for example a CSV) as a Blob. Errors still come back in the usual JSON shape.
+async function download(path: string): Promise<Blob> {
+  let response: Response
+  try {
+    response = await fetch(`${API_URL}${path}`, { credentials: 'include' })
+  } catch {
+    throw new ApiRequestError(0, 'Cannot reach the server. Is the backend running?')
+  }
+  if (!response.ok) {
+    let data: Partial<ApiErrorResponse> | null = null
+    try {
+      data = (await response.json()) as Partial<ApiErrorResponse>
+    } catch {
+      data = null
+    }
+    throw new ApiRequestError(response.status, data?.message ?? `Request failed with status ${response.status}`, data?.errors)
+  }
+  return response.blob()
+}
+
 export const api = {
   get: <T>(path: string, signal?: AbortSignal) => request<T>(path, { signal }),
   post: <T>(path: string, body?: unknown) => request<T>(path, { method: 'POST', body }),
   put: <T>(path: string, body?: unknown) => request<T>(path, { method: 'PUT', body }),
   patch: <T>(path: string, body?: unknown) => request<T>(path, { method: 'PATCH', body }),
   delete: <T>(path: string, body?: unknown) => request<T>(path, { method: 'DELETE', body }),
+  download,
 }

@@ -10,6 +10,7 @@ export interface PublicTournamentItem {
 }
 
 export interface PublicTournamentDetail extends PublicTournamentItem {
+  id: string
   contactName: string | null
   teamConfig: { totalTeams: number | null; minPlayers: number | null; maxPlayers: number | null }
   pointsConfig: { win: number | null; loss: number | null; tie: number | null; noresult: number | null }
